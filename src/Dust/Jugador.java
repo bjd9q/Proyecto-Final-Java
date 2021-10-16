@@ -23,6 +23,7 @@ public final class Jugador {
         getPersonaje1().setVida(vida); //VIDA
         getPersonaje1().setEspecial(especialP1);
         getPersonaje1().setPoderTotal(poderTotal);
+        getPersonaje1().setMoneda(10);
 
     }
     public void addStatsPlayer2(){
@@ -39,6 +40,7 @@ public final class Jugador {
         getPersonaje2().setVida(vida); //VIDA
         getPersonaje2().setEspecial(especialP1);
         getPersonaje2().setPoderTotal(poderTotal);
+        getPersonaje2().setMoneda(10);
     }
 
     public Personaje getPersonaje1() {

@@ -11,10 +11,13 @@ public class Entrada {
         Admin admin = new Admin("vwa");
         int opcion = 0;
         do {
-            System.out.println("1. Iniciar juego rapido");
-            System.out.println("2. Entrar como admin");
-            System.out.println("3. Juega con tu personaje");
-            System.out.println("4. Salir");
+            System.out.println("1. Iniciar juego rapido"); //Usuario
+            System.out.println("2. Entrar como admin"); //Administrador
+            System.out.println("3. Juega con tu personaje"); //Usuario
+            System.out.println("4. Arcade");
+            System.out.println("5. Guardar tu personaje en un fichero");
+            System.out.println("6. Ver los personajes guardos en el fichero");
+            System.out.println("7. Salir");
             System.out.println("Introduce opción: ");
             opcion = teclado.nextInt();
 
@@ -59,14 +62,46 @@ public class Entrada {
                     break;
 
                 case 3:
-                    /* podras seleccionar un personaje guardado en la base de datos y posteriormente tendras la
-                    * posibilidad de iniciar una batalla con el, el poder total sera aumentado si ganas y sera
-                    * registrado en la base de datos */
-                    partida.pExistente();
+                    int opcion3 = 0;
+                    do {
+
+                        System.out.println("1. Ingresa con tu personaje");
+                        System.out.println("2. Crear nuevo personaje");
+                        System.out.println("3. Salir");
+
+                        System.out.println("Introduce opción: ");
+                        opcion3 = teclado.nextInt();
+                        switch (opcion3){
+                            case 1:
+                                /*Se pedira el nombre de tu personaje guardado en base de datos, una vez iniciado te dara la opcion de
+                                * ver sus stats y posteriormente iniciar una batalla contra la cpu 'la batalla sera dependiendo de tu
+                                * poder total si tienes un poder alto te enfrentaras a oponentes de mayor nivel. luego de de la batalla
+                                * podras entrenar, hay dos tipos de entrenamiento basico y avanzado, basico coste de 8 monedas y avanzado de
+                                * 16 ganaras monedas por cada batalla que ganes. si no tienes un personaje te dara la posibilidad de crear
+                                * uno nuevo con stats ramdon '*/
+                                partida.pExistente();
+                                break;
+                            case 2:
+                                partida.crearPerToDB();
+                                break;
+                        }
+                    }while (opcion3!=3);
+                    break;
+
+                case 4:
+                    partida.modoArcade();
+                    break;
+
+                case 5:
+                    partida.personajeWriter();
+
+                    break;
+                case 6:
+                    partida.personajeRead();
                     break;
             }
 
-        }while (opcion!=4);
+        }while (opcion!=7);
     }
 }
 

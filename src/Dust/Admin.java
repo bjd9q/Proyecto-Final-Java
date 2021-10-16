@@ -27,8 +27,9 @@ public final class Admin extends Personaje implements InterfcDB {
         }
     }
     private void insercioPersonajeOrcoBD() {
+
         try {
-            String tipoOrco = setTipo("Orco");
+            String tipoOrco = setRaza("Orco");
             System.out.println("Introduce nombre de Orco");
             String nombre = teclado.next();
             String nombreOrco = setNombre(nombre);
@@ -47,13 +48,14 @@ public final class Admin extends Personaje implements InterfcDB {
             System.out.println("Introduce el especia del Orco");
             int esp=teclado.nextInt();
             int especialM = setEspecial(esp);
+            System.out.println("introduce cantidad de monedad");
+            int mond = teclado.nextInt();
+            int moneda = setMoneda(mond);
             int poderOrcoTotal = vidaM+velocidadM+fuerzaM+resistenciaM+especialM;
             System.out.println("Creando Orco...");
-
-            String queryInsertPat = "INSERT INTO %s (%s,%s,%s,%s,%s,%s,%s,%s) VALUES (?,?,?,?,?,?,?,?)";
             String connectionURL = "jdbc:mysql://127.0.0.1/juego";
+            String queryInsertPat = "INSERT INTO %s (%s,%s,%s,%s,%s,%s,%s,%s,%s) VALUES (?,?,?,?,?,?,?,?,?)";
             connection = DriverManager.getConnection(connectionURL, "root", "");
-
             PreparedStatement prepareStetement = connection.prepareStatement(
                     String.format(queryInsertPat,
                             InterfcDB.DB_TAB_CHR,
@@ -64,7 +66,8 @@ public final class Admin extends Personaje implements InterfcDB {
                             InterfcDB.COL_STR_CHR_TAB,
                             InterfcDB.COL_RES_CHR_TAB,
                             InterfcDB.COL_TP_CHR_TAB,
-                            InterfcDB.COL_SPE_CHR_TAB));
+                            InterfcDB.COL_SPE_CHR_TAB,
+                            InterfcDB.COL_MON_CHR_TAB));
             prepareStetement.setString(1, tipoOrco);
             prepareStetement.setString(2, nombreOrco);
             prepareStetement.setInt(3, vidaM);
@@ -73,18 +76,17 @@ public final class Admin extends Personaje implements InterfcDB {
             prepareStetement.setInt(6, resistenciaM);
             prepareStetement.setInt(7, poderOrcoTotal);
             prepareStetement.setInt(8, especialM);
+            prepareStetement.setInt(9, moneda);
             prepareStetement.executeUpdate();;
         } catch (SQLException throwables) {
-            System.out.println("Personaje existente");
+            System.out.println("ERROR");
         }
-        System.out.println("Personaje introducido en la base de datos \n");
-
-        System.out.printf("Tu personaje %s llamado %s ya ha sido creado y agregado a la base de datos %n: ",getTipo(),getNombre());
-        System.out.println(" \n");
+        System.out.println("Personaje introducido en la base de datos");
+        System.out.printf("Tu personaje %s llamado %s ya ha sido creado y agregado a la base de datos: %n %n ",getRaza(),getNombre());
     }
     private void insercioPersonajeHumanoBD() {
         try {
-            String tipoHumano = setTipo("Humano");
+            String tipoHumano = setRaza("Humano");
             System.out.println("Introduce nombre de Humano");
             String nombre = teclado.next();
             String nombreMago = setNombre(nombre);
@@ -106,7 +108,7 @@ public final class Admin extends Personaje implements InterfcDB {
             int poderHumanoTotal = vidaM+velocidadM+fuerzaM+resistenciaM+especialM;
             System.out.println("Creando Mago...");
 
-            String queryInsertPat = "INSERT INTO %s (%s,%s,%s,%s,%s,%s,%s,%s) VALUES (?,?,?,?,?,?,?,?)";
+            String queryInsertPat = "INSERT INTO %s (%s,%s,%s,%s,%s,%s,%s,%s,%s) VALUES (?,?,?,?,?,?,?,?,?)";
             String connectionURL = "jdbc:mysql://127.0.0.1/juego";
             connection = DriverManager.getConnection(connectionURL, "root", "");
 
@@ -135,11 +137,11 @@ public final class Admin extends Personaje implements InterfcDB {
         }
         System.out.println("Personaje introducido en la base de datos \n");
 
-        System.out.printf("Tu personaje %s llamado %s ya ha sido creado y agregado a la base de datos %n",getTipo(),getNombre());
+        System.out.printf("Tu personaje %s llamado %s ya ha sido creado y agregado a la base de datos %n",getRaza(),getNombre());
     }
     private void insercioPersonajeMagoBD() {
         try {
-           String tipoMago = setTipo("Mago");
+           String tipoMago = setRaza("Mago");
            System.out.println("Introduce nombre de Mago");
            String nombre = teclado.next();
            String nombreMago = setNombre(nombre);
@@ -161,7 +163,7 @@ public final class Admin extends Personaje implements InterfcDB {
            int poderMagoTotal = vidaM+velocidadM+fuerzaM+resistenciaM+especialM;
             System.out.println("Creando Mago...");
 
-            String queryInsertPat = "INSERT INTO %s (%s,%s,%s,%s,%s,%s,%s,%s) VALUES (?,?,?,?,?,?,?,?)";
+            String queryInsertPat = "INSERT INTO %s (%s,%s,%s,%s,%s,%s,%s,%s,%s) VALUES (?,?,?,?,?,?,?,?,?)";
             String connectionURL = "jdbc:mysql://127.0.0.1/juego";
             connection = DriverManager.getConnection(connectionURL, "root", "");
 
@@ -188,12 +190,11 @@ public final class Admin extends Personaje implements InterfcDB {
         } catch (SQLException throwables) {
             System.out.println("Personaje existente");
         }
-        System.out.println("Personaje introducido en la base de datos \n");
-
-        System.out.printf("Tu personaje %s llamado %s ya ha sido creado y agregado a la base de datos %n",getTipo(),getNombre());
+        System.out.println("Personaje introducido en la base de datos ");
+        System.out.printf("Tu personaje %s llamado %s ya ha sido creado y agregado a la base de datos %n",getRaza(),getNombre());
     }
     public void verPersonaje(){
-        System.out.printf("%s llamado %s  vida: %d | velocidad: %d | fuerza: %d | resistencia: %d | especial %d | poder total: %d",getTipo(),getNombre(),getVida()
+        System.out.printf("%s llamado %s  vida: %d | velocidad: %d | fuerza: %d | resistencia: %d | especial %d | poder total: %d",getRaza(),getNombre(),getVida()
                 ,getVelocidad(),getFuerza(),getResistencia(),getEspecial(),getPoderTotal());
     }
     public void mostrarPersonajesDB(){
@@ -218,15 +219,11 @@ public final class Admin extends Personaje implements InterfcDB {
                 // print the results
                 System.out.format("%s, %s, %d, %d, %d, %d, %d %d\n", tipoP, nombreP, vidaP, velocidad,
                         fuerza,resistencia,poderTotal,especial);
-
-
-
             }
             st.close();
         }catch (Exception e){
             System.err.println("excepcion!  ");
             System.err.println(e.getMessage());
-
         }
     }
 }

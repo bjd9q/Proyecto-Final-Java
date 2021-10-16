@@ -1,22 +1,29 @@
 package Dust;
 
 public class Personaje{
-    private String tipo,nombre;
-    private int vida, velocidad, fuerza, resistencia, poderTotal,especial;
+    private String raza,nombre;
+    private int vida, velocidad, fuerza, resistencia, poderTotal,especial,moneda;
 
     public Personaje(){}
 
-    public Personaje(String tipo,String nombre){
+    public Personaje(String raza,String nombre){
         this.nombre = nombre;
-        this.tipo=tipo;
+        this.raza=raza;
     }
 
-    public String getTipo() {
-        return tipo;
+    public int getMoneda() {
+        return moneda;
     }
-    public String setTipo(String tipo) {
-        this.tipo = tipo;
-        return tipo;
+    public int setMoneda(int moneda) {
+        this.moneda = moneda;
+        return moneda;
+    }
+    public String getRaza() {
+        return raza;
+    }
+    public String setRaza(String raza) {
+        this.raza = raza;
+        return raza;
     }
     public int getEspecial() {
         return especial;
