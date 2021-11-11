@@ -1,0 +1,6 @@
+.bg{
+    -fx-background-image: url("backgroundPersonaje-view.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}

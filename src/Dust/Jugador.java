@@ -2,7 +2,7 @@ package Dust;
 
 public final class Jugador {
    private Personaje personaje1, personaje2;
-
+///hhhhd
     public Jugador(){}
 
     public Jugador(Personaje personaje1, Personaje personaje2) {

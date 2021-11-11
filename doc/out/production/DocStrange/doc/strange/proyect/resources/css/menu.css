@@ -1,0 +1,16 @@
+.menuItem:hover{
+    -fx-background-image: url("arrow.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-background-position: center;
+}
+.menuItem{
+    -fx-background-color:transparent;
+}
+
+.menuBackground{
+    -fx-background-image: url("menu.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}
