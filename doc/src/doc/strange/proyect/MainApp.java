@@ -15,10 +15,10 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-        int width = gd.getDisplayMode().getWidth() - 180;
-        int height = gd.getDisplayMode().getHeight() - 100;
+        int width = gd.getDisplayMode().getWidth()-60 ;
+        int height = gd.getDisplayMode().getHeight()-60;
         Image image = new Image("doc/strange/proyect/resources/img/ico.png");
-        Parent root = FXMLLoader.load(getClass().getResource("/doc/strange/proyect/scene1/main-view.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/doc/strange/proyect/sceneVideo/media-view.fxml"));
         Scene scene = new Scene(root, width, height);
         stage.getIcons().add(new Image("https://cdn6.aptoide.com/imgs/7/1/9/7193e8b89af7d5650baa68bc75a64538_icon.png"));
         stage.setScene(scene);
@@ -26,6 +26,7 @@ public class MainApp extends Application {
         scene.setCursor(new ImageCursor(image));
         stage.setFullScreen(true);
         stage.setResizable(false);
+        stage.setFullScreenExitHint("");
         stage.show();
     }
 
